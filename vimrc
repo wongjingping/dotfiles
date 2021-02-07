@@ -35,3 +35,9 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" use fzf to search and jump to file
+nnoremap <C-p> :Files<Cr>
+
+" use ripgrep to search for string in files
+nnoremap <C-r> :Rg<Cr>
+
