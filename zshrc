@@ -35,3 +35,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # bindkey "^R" history-incremental-search-backward
 bindkey \^U backward-kill-line
 
+# add fzf zsh bindings for history and tab completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
