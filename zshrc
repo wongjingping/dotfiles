@@ -34,19 +34,4 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # bindkey -v
 # bindkey "^R" history-incremental-search-backward
 bindkey \^U backward-kill-line
-alias h='history | fzf'
 
-# android env
-JAVA_HOME=/Library/Java/JavaVirtualMachines/TwitterJDK11/Contents/Home
-ANDROID_HOME="${HOME}/Library/Android/sdk"
-ANDROID_SDK=$ANDROID_HOME
-LATEST_BUILD_TOOLS=$(ls -t $ANDROID_HOME/build-tools/ | head -n 1)
-PATH=$PATH:"$ANDROID_HOME/tools"
-PATH=$PATH:"$ANDROID_HOME/platform-tools"
-PATH=$PATH:"$ANDROID_HOME/build-tools/$LATEST_BUILD_TOOLS"
-export JAVA_HOME ANDROID_HOME PATH
-launchctl setenv ANDROID_HOME "$ANDROID_HOME"
-
-source ~/.twitter-android-script # added by Twitter for Android
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

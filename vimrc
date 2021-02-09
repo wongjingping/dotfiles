@@ -7,16 +7,16 @@ Plug 'junegunn/fzf.vim'
 
 " visual
 " Plug 'sainnhe/sonokai'
-Plug 'seesleestak/duo-mini'
+Plug 'smallwat3r/vim-efficient'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
 """ visual settings
 
-" line numbers
-set number
-colorscheme duo-mini
+set number               " line numbers
+colorscheme efficient    " color theme
+set laststatus=2         " enable status bar
 
 """ when editing
 
