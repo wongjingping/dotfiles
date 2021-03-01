@@ -8,6 +8,9 @@ Plug 'junegunn/fzf.vim'
 " navigation/file-tree
 Plug 'preservim/nerdtree'
 
+" multi cursor
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 " visual
 " Plug 'sainnhe/sonokai'
 Plug 'smallwat3r/vim-efficient'
@@ -15,23 +18,40 @@ Plug 'smallwat3r/vim-efficient'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
+""" editor settings
+
+" leader key
+let mapleader = " "
+
+" open vimrc and source it quickly
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" quit quickly
+nnoremap <leader>q :qa<cr>
+nnoremap <leader>wq :wqa<cr>
+
+" indent by 2 spaces
+set softtabstop=2
+set shiftwidth=2
+
 """ visual settings
 
 set number               " line numbers
 set relativenumber       " relative line numbers
 colorscheme efficient    " color theme
 set laststatus=2         " enable status bar
-
-""" when editing
-
-" indent by 2 spaces
-set softtabstop=2
-set shiftwidth=2
+set splitright           " split new buffers to the right
 
 """ commands / navigation
 
-" Start NERDTree and put the cursor back in the other window.
+" Start NERDTree file explorer and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p
+nnoremap <leader>a :NERDTreeToggle<cr>
+nnoremap <leader>f :NERDTreeFind<cr>
+
+" use tags where available
+set tags=./tags;,tags;
 
 " map jk to perform escape
 :inoremap jk <Esc>`^
