@@ -37,3 +37,8 @@ bindkey \^U backward-kill-line
 
 # add fzf zsh bindings for history and tab completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# allow editing of commands in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
