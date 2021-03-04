@@ -34,3 +34,5 @@ brew install fzf
 brew install ripgrep
 brew install ctags
 
+# link ctags
+ln -s ~/workspace/dotfiles/ctags .ctags
