@@ -29,3 +29,8 @@ for file in ${files}; do
     ln -s "${dir}/${file}" "${HOME}/.${file}"
 done
 
+# install packages
+brew install fzf
+brew install ripgrep
+brew install ctags
+
