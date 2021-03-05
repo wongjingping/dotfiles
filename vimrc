@@ -28,6 +28,10 @@ set timeout timeoutlen=300
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" copy and paste from clipboard
+vnoremap <leader>c "+y
+nnoremap <leader>v "+p
+
 " quit quickly
 nnoremap <leader>q :q<cr>
 nnoremap <leader>qq :qa<cr>
@@ -52,16 +56,32 @@ set incsearch            " highlight incrementally as we search
 " Start NERDTree file explorer and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p
 nnoremap <leader>a :NERDTreeToggle<cr>
-nnoremap <leader>f :NERDTreeFind<cr>
+nnoremap <leader>s :NERDTreeFind<cr>
 
-" use fzf to search and jump to file
-nnoremap <leader>p :Files<cr>
+
+""" search keymaps across uiop
 
 " use fzf to search within current buffer
-nnoremap <leader>r :BLines<cr>
+nnoremap <leader>u :BLines<cr>
+
+" use fzf to search and jump to file
+nnoremap <leader>i :call 
+  \ fzf#run(fzf#wrap({'source': 'cat /tmp/filedeps'}))<cr>
 
 " use fzf to search for symbol in tags
 nnoremap <leader>o :Tags<cr>
+
+" use ripgrep to find usages in any of the files in /tmp/filedeps
+command! -bang -nargs=* Rgg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.
+  \   shellescape(<q-args>).
+  \   ' '.
+  \   system('tr "\n" " " < /tmp/filedeps'),
+  \   0,
+  \   fzf#vim#with_preview(),
+  \   <bang>0)
+nnoremap <leader>p :Rgg<cr>
 
 " use tags where available
 set tags=./tags;,tags;
