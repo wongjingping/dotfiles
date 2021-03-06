@@ -32,6 +32,12 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 vnoremap <leader>c "+y
 nnoremap <leader>v "+p
 
+" navigate between buffers
+nnoremap <leader>h <c-w>h
+nnoremap <leader>j <c-w>j 
+nnoremap <leader>k <c-w>k
+nnoremap <leader>l <c-w>l
+
 " quit quickly
 nnoremap <leader>q :q<cr>
 nnoremap <leader>qq :qa<cr>
