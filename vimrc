@@ -60,7 +60,7 @@ set incsearch            " highlight incrementally as we search
 """ plugins settings
 
 " Start NERDTree file explorer and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
+" autocmd VimEnter * NERDTree | wincmd p
 nnoremap <leader>a :NERDTreeToggle<cr>
 nnoremap <leader>s :NERDTreeFind<cr>
 
