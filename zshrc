@@ -42,3 +42,6 @@ bindkey \^U backward-kill-line
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+
+# alias for vim
+alias v='vim'
