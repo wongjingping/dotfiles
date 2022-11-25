@@ -11,10 +11,6 @@ Plug 'preservim/nerdtree'
 " multi cursor
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-" visual
-" Plug 'sainnhe/sonokai'
-Plug 'smallwat3r/vim-efficient'
-
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -52,7 +48,7 @@ set shiftwidth=2
 """ visual settings
 
 set number               " line numbers
-colorscheme efficient    " color theme
+colorscheme lunaperche   " color theme
 set laststatus=2         " enable status bar
 set splitright           " split new buffers to the right
 set incsearch            " highlight incrementally as we search
