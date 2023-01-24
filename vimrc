@@ -1,3 +1,4 @@
+" Using vim-plug here.
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 
@@ -10,6 +11,13 @@ Plug 'preservim/nerdtree'
 
 " multi cursor
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+" LSP for syntax
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
+
+" rust lang
+Plug 'rust-lang/rust.vim'
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -60,20 +68,69 @@ set incsearch            " highlight incrementally as we search
 nnoremap <leader>a :NERDTreeToggle<cr>
 nnoremap <leader>s :NERDTreeFind<cr>
 
+" enable syntax for rust-lang
+syntax enable
+filetype plugin indent on
+
+" apply rustfmt on save
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+
+"" coc standard settings
+
+" use tab to trigger completion 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
 
 """ search keymaps across uiop
 
 " use fzf to search within current buffer
 nnoremap <leader>u :BLines<cr>
 
-" use fzf to search and jump to file
+" (dep) use fzf to search and jump to file
 nnoremap <leader>i :call 
   \ fzf#run(fzf#wrap({'source': 'cat /tmp/filedeps'}))<cr>
 
 " use fzf to search for symbol in tags
 nnoremap <leader>o :Tags<cr>
 
-" use ripgrep to find usages in any of the files in /tmp/filedeps
+" (dep) use ripgrep to find usages in any of the files in /tmp/filedeps
 command! -bang -nargs=* Rgg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.
