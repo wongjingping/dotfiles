@@ -28,7 +28,9 @@ zstyle ':vcs_info:*' enable git
 
 PROMPT="[%{%F{240}%}JP %{%F{255}%}%c %{%F{220}%}\${vcs_info_msg_0_}%{$reset_color%}]$ "
 
+# PATH variables
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export GOPATH="$HOME"
 
 # keyboard shortcuts for editing
 # bindkey -v
