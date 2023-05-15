@@ -28,9 +28,10 @@ zstyle ':vcs_info:*' enable git
 
 PROMPT="[%{%F{240}%}JP %{%F{255}%}%c %{%F{220}%}\${vcs_info_msg_0_}%{$reset_color%}]$ "
 
-# PATH variables
+# PATH modifications
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export GOPATH="$HOME"
+export GOPATH="$HOME/workspace/go"
+export PATH="${HOME}/.fluvio/bin:${PATH}"
 
 # keyboard shortcuts for editing
 # bindkey -v
@@ -60,16 +61,32 @@ alias godot="cd ~/dotfiles"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/Users/jp/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#    eval "$__conda_setup"
-# else
-#     if [ -f "/Users/jp/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/Users/jp/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/Users/jp/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
+__conda_setup="$('/Users/jp/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+   eval "$__conda_setup"
+else
+    if [ -f "/Users/jp/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/jp/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/jp/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
 # <<< conda initialize <<<
 
+# set locale
+export LC_ALL=en_US.UTF-8
+export LANG=en_EN.UTF-8
+
+# pnpm
+export PNPM_HOME="/Users/jp/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jp/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jp/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jp/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jp/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
