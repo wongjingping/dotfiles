@@ -5,8 +5,8 @@
 
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
+dir=~/workspace/dotfiles                    # dotfiles directory
+olddir=~/workspace/dotfiles_old             # old dotfiles backup directory
 files="vimrc zshrc"        # list of files/folders to symlink in homedir
 
 ##########
@@ -32,7 +32,3 @@ done
 # install packages
 brew install fzf
 brew install ripgrep
-brew install ctags
-
-# link ctags
-ln -s ~/workspace/dotfiles/ctags .ctags
