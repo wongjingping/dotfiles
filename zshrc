@@ -58,7 +58,7 @@ alias t='tree -L 1'
 
 # directory aliases
 alias gowp="cd ~/workspace"
-alias godot="cd ~/dotfiles"
+alias godot="cd ~/workspace/dotfiles"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
