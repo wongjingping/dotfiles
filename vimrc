@@ -148,8 +148,8 @@ function ScrollPopUp(down)
 
   return 1
 endfunction
-nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
-nnoremap <expr> <c-u> ScrollPopUp(0) ? '<esc>' : '<c-u>'
+nnoremap <expr> j ScrollPopUp(1) ? '<esc>' : 'j'
+nnoremap <expr> k ScrollPopUp(0) ? '<esc>' : 'k'
 
 """ search keymaps across uiop
 
