@@ -30,7 +30,7 @@ set timeout timeoutlen=300
 
 " open vimrc and source it quickly
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>sv :w<CR>:source $MYVIMRC<cr>
 
 " copy and paste from clipboard
 vnoremap <leader>c "+y
@@ -101,8 +101,9 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" GoTo code navigation
-nmap <silent> gd <Plug>(coc-definition)
+""" GoTo code navigation
+" go to definition and open nerdtree sidebar and shift back to window
+nmap <silent> gd <Plug>(coc-definition)<leader>s<leader>l
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -157,8 +158,8 @@ nnoremap <expr> k ScrollPopUp(0) ? '<esc>' : 'k'
 nnoremap <leader>u :BLines<cr>
 
 " (dep) use fzf to search and jump to file
-nnoremap <leader>i :call 
-  \ fzf#run(fzf#wrap({'source': 'cat /tmp/filedeps'}))<cr>
+set rtp+=~/.fzf
+nnoremap <leader>i :FZF<CR>
 
 " use fzf to search for symbol in tags
 nnoremap <leader>o :Tags<cr>
@@ -175,9 +176,19 @@ command! -bang -nargs=* Rgg
   \   <bang>0)
 nnoremap <leader>p :Rgg<cr>
 
-" use tags where available
-set tags=./tags;,tags;
+" use tags where available, including GOROOT for pkg navigation
+set tags=./tags,tags;$GOROOT/src/pkg/*/tags
 
+""" other coc stuff
+
+" show issues in code base
+nnoremap <leader>d :CocList diagnostics<CR>
+
+" gofmt on save
+augroup fmt_go
+  autocmd!
+  autocmd BufWritePre *.go call CocAction('format')
+augroup END
 
 """ keymaps
 
