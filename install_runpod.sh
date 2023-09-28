@@ -1,6 +1,3 @@
-# add ssh key so that we can authenticate with github
-ssh-add .ssh/id_rsa_runpod
-
 # assumes a volume mounted at /workspace
 export HOME="/workspace"
 cd $HOME
@@ -19,8 +16,11 @@ git config --global user.email "wongjingping@gmail.com"
 git config --global user.name JP
 git config --global core.sshCommand "ssh -i /root/.ssh/id_rsa_runpod"
 
-# pull dot files
 cd /root
+# add ssh key so that we can authenticate with github. has to be just before git clone
+eval $(ssh-agent -s)
+ssh-add .ssh/id_rsa_runpod
+# pull dot files
 git clone git@github.com:wongjingping/dotfiles.git
 cp dotfiles/zshrc_runpod .zshrc # no need to symlink since config is ephemeral
 
