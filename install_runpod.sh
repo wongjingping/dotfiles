@@ -1,3 +1,6 @@
+# add ssh key so that we can authenticate with github
+ssh-add .ssh/id_rsa_runpod
+
 # assumes a volume mounted at /workspace
 export HOME="/workspace"
 cd $HOME
