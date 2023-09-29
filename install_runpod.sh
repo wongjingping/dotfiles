@@ -4,12 +4,12 @@ cd $HOME
 
 # system installations
 apt update
-apt install zsh fzf vim -y
+apt install git-lfs screen zsh fzf vim -y
 chsh -s /usr/bin/zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # python installations
-pip install git+https://github.com/huggingface/transformers.git@main accelerate peft tqdm transformers datasets wandb flash-attn pandas
+pip install git+https://github.com/huggingface/transformers.git@main accelerate bitsandbytes peft sentence_transformers sqlparse tqdm transformers datasets wandb flash-attn pandas
 
 # git config
 git config --global user.email "wongjingping@gmail.com"
@@ -17,9 +17,8 @@ git config --global user.name JP
 git config --global core.sshCommand "ssh -i /root/.ssh/id_rsa_runpod"
 
 cd /root
-# add ssh key so that we can authenticate with github. has to be just before git clone
-eval $(ssh-agent -s)
-ssh-add .ssh/id_rsa_runpod
+# add github's host ip to known hosts to avoid interactive prompt when cloning
+ssh-keyscan -H github.com >> .ssh/known_hosts
 # pull dot files
 git clone git@github.com:wongjingping/dotfiles.git
 cp dotfiles/zshrc_runpod .zshrc # no need to symlink since config is ephemeral
