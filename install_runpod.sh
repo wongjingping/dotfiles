@@ -4,12 +4,17 @@ cd $HOME
 
 # system installations
 apt update
-apt install git-lfs screen zsh fzf vim -y
+apt install git-lfs postgresql-client-common libpq5 apt-transport-https ca-certificates gnupg curl screen zsh fzf vim -y
 chsh -s /usr/bin/zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
+# install gsutil
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.asc] https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | tee /usr/share/keyrings/cloud.google.asc
+apt-get update && apt-get install google-cloud-cli
+
 # python installations
-pip install git+https://github.com/huggingface/transformers.git@main accelerate bitsandbytes peft sentence_transformers sqlparse tqdm transformers datasets wandb flash-attn pandas
+pip install git+https://github.com/huggingface/transformers.git@main accelerate bitsandbytes peft sentence_transformers sqlparse tqdm transformers datasets wandb flash-attn pandas spacy
 
 # git config
 git config --global user.email "wongjingping@gmail.com"

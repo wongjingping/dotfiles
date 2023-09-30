@@ -15,3 +15,8 @@ zstyle ':vcs_info:git:*' formats '(%b)'
 zstyle ':vcs_info:*' enable git
 
 PROMPT="[%{%F{240}%}JP %{%F{255}%}%c %{%F{220}%}\${vcs_info_msg_0_}%{$reset_color%}]$ "
+
+# locale settings
+export LANGUAGE=en_US
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
