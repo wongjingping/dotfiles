@@ -12,8 +12,8 @@ Instructions for starting on a new ubuntu instance. Before running this, transfe
 IP="192.168.1.100"
 PORT="30001"
 SSH_USER="root"
-MY_KEY="~/.ssh/id_ed25519"
-KEY_TO_TRANSFER="~/.ssh/id_rsa_runpod"
+MY_KEY="${HOME}/.ssh/id_ed25519"
+KEY_TO_TRANSFER="${HOME}/.ssh/id_rsa_runpod"
 scp -P $PORT -i "${MY_KEY}" "${KEY_TO_TRANSFER}" "${SSH_USER}@${IP}:/${SSH_USER}/.ssh/"
 ```
 Then run this script to install a bunch of stuff including zsh and ohmyzsh:
