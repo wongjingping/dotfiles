@@ -14,7 +14,7 @@ PORT="30001"
 SSH_USER="root"
 MY_KEY="${HOME}/.ssh/id_ed25519"
 KEY_TO_TRANSFER="${HOME}/.ssh/id_rsa_runpod"
-scp -P $PORT -i "${MY_KEY}" "${KEY_TO_TRANSFER}" "${SSH_USER}@${IP}:/${SSH_USER}/.ssh/"
+scp -o StrictHostKeyChecking=no -P $PORT -i "${MY_KEY}" "${KEY_TO_TRANSFER}" "${SSH_USER}@${IP}:/${SSH_USER}/.ssh/"
 ```
 Then run this script to install a bunch of stuff including zsh and ohmyzsh:
 ```sh
