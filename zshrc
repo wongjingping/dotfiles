@@ -91,3 +91,19 @@ if [ -f '/Users/jp/workspace/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jp
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/jp/workspace/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jp/workspace/google-cloud-sdk/completion.zsh.inc'; fi
+
+function pull_and_delete_branch() {
+    # Save current branch name
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+    # Checkout main branch
+    git checkout main
+
+    # Pull changes from main
+    git pull
+
+    # Delete the saved branch
+    git branch -d "$current_branch"
+}
+
+alias gdd='pull_and_delete_branch'
