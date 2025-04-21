@@ -17,6 +17,11 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Initialize Homebrew environment (especially important for Apple Silicon)
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # User configuration
 
 # my own prompt
